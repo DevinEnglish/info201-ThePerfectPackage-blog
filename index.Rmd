@@ -1,0 +1,173 @@
+---
+title: "The Perfect Package"
+author: "Devin English"
+date: "May 22, 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+library(magrittr)
+```
+
+# The Most Important Packages to Use for Beginners
+These packages can get you started when working on data visualization as a beginner.
+
+***
+
+## HOW TO INSTALL A PACKAGE
+Use function **install.packages("Name_of_package"")** in console to install the package (you only need to do this once)
+
+Call the package using **library(Name_of_package)** at the beginning of the script to use the package
+
+*** 
+
+## DATA MANIPULATION
+
+<div class = "row">
+  
+<div class = "col-md-6">
+### Dplyr
+Dplyr is awesome to manipulate data structure in an easy and basic way!
+
+Some functions include:
+
+* **mutate()** adds new variables that are functions of existing variables
+
+* **select()** picks column based on their name
+
+* **filter()** picks row based on their value
+
+* **summarise()** reduces rows to a single summary
+
+* **arrange()** changes row ordering
+
+See documentation [here](https://www.rdocumentation.org/packages/dplyr/versions/0.7.8)
+
+![dplyr](/Users/Devin/Documents/INFO201/dplyr.png)
+</div>
+
+***
+
+<div class = "col-md-6">
+### Tidyr
+Tidy allows you to organize your data structures in a organized way!
+
+Some functions include:
+
+* **gather()** takes columns and gathers them into rows
+
+* **spread()** takes two columns and spreads into multiple columns
+
+See documentation [here](https://www.rdocumentation.org/packages/tidyr/versions/0.8.3)
+![tidyr](/Users/Devin/Documents/INFO201/tidyr.png)
+
+</div>
+
+***
+
+## GRAPHICS
+<div class = "row">
+  
+<div class = "col-md-4">
+### Ggplot2
+ggplot2 is the best package gor creating beautiful visualizations super easily!
+
+How to Use:
+
+* **ggplot()** is the outside function to use for your plot
+* **aes()** is used for choosing axis variables and other ploting info
+* **geom_point()** and **geom_histogram()** is used to select the type of graph to create
+* **scale_colour_brewer()** can create beautiful color schemes 
+
+See documentation [here](https://www.rdocumentation.org/packages/ggplot2/versions/3.1.1)
+</div>
+
+<div class = "col-md-4">
+
+![ggplot](/Users/Devin/Documents/INFO201/ggplot2-1.png)
+</div>
+
+<div class = "col-md-4">
+![ggplot](/Users/Devin/Documents/INFO201/gg.png)
+</div>
+
+***
+
+## SYNTAX
+### Magrittr
+Magrittr allows you to perform functions more efficiently
+
+This package allows you to use piping in your code.
+
+Piping uses the syntax **%>%** which takes one function or variable and pipes it in to be the first parameter of the second function.
+
+An Example: Function 1 (2 * 4) **%>%** Function 2 (+ 3) = 11
+
+See documentation [here](https://www.rdocumentation.org/packages/magrittr/versions/1.0.1/topics/magrittr)
+
+***
+
+## DATASETS
+### A list of built in datasets to use for your next project!
+* **HairEyeColor** Distribution of hair and eye color and sex in 592 statistics students.
+* **Sleep** Data which show the effect of two soporific drugs (increase in hours of sleep compared to control) on 10 patients.
+* **Orange** Records of the growth of orange trees.
+* **cars** Speed and Stopping Distances of Cars.
+* **rivers** Lengths (in miles) of 141 “major” rivers in North America.
+* **iris** Data about iris dimentions.
+
+***
+##Example scripts
+### add packages
+
+      library(ggplot2)
+      library(dplyr)
+      library(tidyr)
+      library(magrittr)
+
+### dplyr
+Adding an additional colum titled time my dividing every value of dist by every value of speed
+
+       knitr::kable(head(cars, 5))
+       knitr::kable(mutate(head(cars, 5), time = round((dist/speed), digit = 2)))
+    
+```{r}
+knitr::kable(head(cars, 5))
+    knitr::kable(mutate(head(cars, 5), time = round((dist/speed), digit = 2)))
+
+```
+
+###tidyr
+Rearranging table to be grouped by ID with the extra amount of sleep becoming the value for the columns of groups
+
+          knitr::kable(sleep)
+          knitr::kable(sleep %>% 
+                  spread(group, extra))
+
+```{r}
+ knitr::kable(sleep)
+ knitr::kable(sleep %>% 
+                spread(group, extra))
+
+```
+
+###ggplot2
+Creates a scatter plot of iris data
+
+          plot <- ggplot(iris) +
+            geom_point(aes(x = Petal.Length, y = Petal.Width, color = Species)) +
+            scale_color_brewer(palette="Set2") +
+            labs(title = "Petal Length VS Petal Width of Different Iris Species") 
+            print(plot)
+        
+```{r}
+plot <- ggplot(iris) +
+  geom_point(aes(x = Petal.Length, y = Petal.Width, color = Species)) +
+  scale_color_brewer(palette="Set2") +
+  labs(title = "Petal Length VS Petal Width of Different Iris Species") 
+print(plot)
+```
