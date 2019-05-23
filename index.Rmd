@@ -19,7 +19,7 @@ These packages can get you started when working on data visualization as a begin
 ***
 
 ## HOW TO INSTALL A PACKAGE
-Use function **install.packages("Name_of_package"")** in console to install the package (you only need to do this once)
+Use function **install.packages("Name_of_package")** in console to install the package (you only need to do this once)
 
 Call the package using **library(Name_of_package)** at the beginning of the script to use the package
 
